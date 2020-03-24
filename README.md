@@ -1,7 +1,7 @@
 # Encryptor User Manual
 
 ## Use
-Encryptor takes a message as input and outputs an encrypted message based on the chosen alphabet and shift number by the user. It can also decrypt a message that has been encrypted with a Normal English alphabet.
+Encryptor takes a message as input and outputs an encrypted message based on the chosen alphabet and shift number by the user. It can also decrypt a message that has been encrypted with a Normal English alphabet. The decryption is based on the letter 'e' being the most common used letter in the English alphabet.
 
 ## Steps
 * Type a message you want to encrypt into the space right of "Message:". The message must contain at least one letter.
