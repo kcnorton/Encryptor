@@ -1,7 +1,7 @@
 # Encryptor User Manual
 
 ## Use
-Encryptor takes a message as input and outputs an encrypted message based on the chosen alphabet and shift number by the user.
+Encryptor takes a message as input and outputs an encrypted message based on the chosen alphabet and shift number by the user. It can also decrypt a message that has been encrypted with a Normal English alphabet.
 
 ## Steps
 * Type a message you want to encrypt into the space right of "Message:". The message must contain at least one letter.
@@ -10,7 +10,15 @@ Encryptor takes a message as input and outputs an encrypted message based on the
 
 * Select which alphabet to use for encryption from the dropdown menu to the right of "Alphabet:". There are 3 options: Normal, Reverse, and PASDFG.
 
-* Click the "Encrypt" button, and your encrypted message will appear underneath "Encrypted" at the bottom of the screen.
+* Click the "Encrypt" button, and your encrypted message will appear underneath "Encrypted Message:" at the bottom of the screen.
+
+* Click the "Decryptor" button to navigate to the decryption page.
+
+* Type an encrypted message you want to decrypt. Note: the decryption only works for messages encrypted with a Normal English alphabet.
+
+* Click the "Decrypt" button, and your decrypted message will appear underneath the "Decrypted Message:" at the bottom of the screen.
+
+* Click the "Encryptor" button to navigate to the encryption page.
 
 ## Troubleshooting
 If you enter invalid input in the Message or Shift Number box, you will encounter an error. The table below displays the possible error scenarios.

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.encryptor.EncryptorActivity">
+    tools:context="com.encryptor.DecryptorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +21,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Message:" />
+                android:text="Encryption:" />
 
             <EditText
-                android:id="@+id/messageInput"
+                android:id="@+id/encryptionInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,54 +39,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Shift Number:" />
-
-            <EditText
-                android:id="@+id/shiftNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Alphabet:" />
-
-            <Spinner
-                android:id="@+id/targetAlphabet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <Button
-                android:id="@+id/encryptButton"
+                android:id="@+id/decryptButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:text="ENCRYPT" />
+                android:text="DECRYPT" />
 
         </LinearLayout>
 
@@ -103,13 +61,13 @@
                 android:paddingTop="50dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="10dp"
-                android:text="Encrypted Message:"
+                android:text="Decrypted Message:"
                 android:textAlignment="center"
                 android:textColor="#0A0000"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/cipherText"
+                android:id="@+id/decryptText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="3"
@@ -120,11 +78,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/decryptActivityButton"
+            android:id="@+id/encryptorActivityButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="DECRYPTOR" />
+            android:text="ENCRYPTOR" />
 
     </LinearLayout>
 

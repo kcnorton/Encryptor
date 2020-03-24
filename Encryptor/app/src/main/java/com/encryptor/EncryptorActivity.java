@@ -1,10 +1,11 @@
-package encryptor;
+package com.encryptor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
 import android.view.*;
 import android.widget.AdapterView.*;
+import android.content.Intent;
 
 public class EncryptorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -13,6 +14,8 @@ public class EncryptorActivity extends AppCompatActivity implements View.OnClick
     private Spinner targetAlphabet;
     private Button encryptButton;
     private TextView cipherText;
+
+    private Button decryptActivityButton;
 
     String alphabet = "";
 
@@ -27,8 +30,12 @@ public class EncryptorActivity extends AppCompatActivity implements View.OnClick
         encryptButton = (Button)findViewById(R.id.encryptButton);
         cipherText = (TextView) findViewById(R.id.cipherText);
 
+        decryptActivityButton = (Button)findViewById(R.id.decryptActivityButton);
+
         //set onClickListener to encryptButton
         encryptButton.setOnClickListener(this);
+
+        decryptActivityButton.setOnClickListener(this);
 
         //shiftNumber default is 0
         shiftNumber.setText("0");
@@ -64,65 +71,75 @@ public class EncryptorActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    //method for clicking encryptButton
+    //method for clicking encryptor and navigate to decryptor
     @Override
     public void onClick(View view){
-        //initialize error flag
-        boolean error = false;
-        //check if messageInput is an empty string
-        if(messageInput.getText().toString().trim().length() == 0){
-            //error message
-            messageInput.setError("Missing Message");
-            error = true;
-        } else {
-            int count = 0;
-            //if not, check if a letter is present
-            for (int i = 0; i < messageInput.length(); i++) {
-                char c = messageInput.getText().toString().charAt(i);
-                if (Character.isLetter(c)) {
-                    //increment count
-                    count++;
+        switch (view.getId()) {
+            case R.id.encryptButton: {
+                //initialize error flag
+                boolean error = false;
+                //check if messageInput is an empty string
+                if (messageInput.getText().toString().trim().length() == 0) {
+                    //error message
+                    messageInput.setError("Missing Message");
+                    error = true;
+                } else {
+                    int count = 0;
+                    //if not, check if a letter is present
+                    for (int i = 0; i < messageInput.length(); i++) {
+                        char c = messageInput.getText().toString().charAt(i);
+                        if (Character.isLetter(c)) {
+                            //increment count
+                            count++;
+                        }
+                    }
+                    //check count
+                    if (count < 1) {
+                        //error message
+                        messageInput.setError("Invalid Message");
+                        error = true;
+                    }
                 }
+
+                String n = shiftNumber.getText().toString();
+                //check if n is blank
+                if (n.trim().isEmpty()) {
+                    n = "0";
+                }
+                //check if shiftNumber is numeric
+                if (android.text.TextUtils.isDigitsOnly(shiftNumber.getText())) {
+                    int intN = Integer.parseInt(n);
+                    //check if it is between 1 and 26
+                    if ((1 > intN) || (intN >= 26)) {
+                        //error message
+                        shiftNumber.setError("Invalid Shift Number");
+                        error = true;
+                    }
+                } else {
+                    shiftNumber.setError("Invalid Shift Number");
+                    error = true;
+                }
+
+
+                String message = messageInput.getText().toString();
+                String number = shiftNumber.getText().toString();
+
+                //if error is false -> call encrypt
+                if (!error) {
+                    //get alphabet string
+                    String alphabetStr = alphabetStr(alphabet);
+                    //get shifted alphabet
+                    String shiftedAlphabet = shiftAlphabet(number, alphabetStr);
+                    alphabetStr = alphabetStr + alphabetStr.toLowerCase();
+                    cipherText.setText(encrypt(message, shiftedAlphabet));
+                }
+                break;
             }
-            //check count
-            if (count < 1) {
-                //error message
-                messageInput.setError("Invalid Message");
-                error = true;
+            case R.id.decryptActivityButton: {
+                Intent intent = new Intent(EncryptorActivity.this, DecryptorActivity.class);
+                startActivity(intent);
+                break;
             }
-        }
-
-        String n = shiftNumber.getText().toString();
-        //check if n is blank
-        if(n.trim().isEmpty()){
-            n = "0";
-        }
-        //check if shiftNumber is numeric
-        if(android.text.TextUtils.isDigitsOnly(shiftNumber.getText())){
-            int intN = Integer.parseInt(n);
-            //check if it is between 1 and 26
-            if((1 > intN) || (intN >= 26)){
-                //error message
-                shiftNumber.setError("Invalid Shift Number");
-                error = true;
-            }
-        } else{
-            shiftNumber.setError("Invalid Shift Number");
-            error = true;
-        }
-
-
-        String message = messageInput.getText().toString();
-        String number = shiftNumber.getText().toString();
-
-        //if error is false -> call encrypt
-        if(!error){
-            //get alphabet string
-            String alphabetStr = alphabetStr(alphabet);
-            //get shifted alphabet
-            String shiftedAlphabet = shiftAlphabet(number,alphabetStr);
-            alphabetStr = alphabetStr + alphabetStr.toLowerCase();
-            cipherText.setText(encrypt(message,shiftedAlphabet));
         }
     }
 
@@ -174,4 +191,5 @@ public class EncryptorActivity extends AppCompatActivity implements View.OnClick
             }
             return alphabetStr;
     }
+
 }
